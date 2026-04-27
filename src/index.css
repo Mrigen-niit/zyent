@@ -1,0 +1,161 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Outfit:wght@100..900&display=swap');
+@import "@fontsource-variable/geist";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    --font-heading: 'Outfit', var(--font-sans);
+    --font-sans: 'Geist Variable', 'Outfit', 'Inter', -apple-system, sans-serif;
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-mono: 'Geist Mono', 'JetBrains Mono', monospace;
+    
+    --color-brand-hpe: #01a982;
+    --color-brand-oracle: #c74634;
+    --color-enterprise-bg: #0C0C0B;
+    --color-enterprise-card: #141413;
+    --color-enterprise-border: rgba(255, 255, 255, 0.05);
+
+    --color-sidebar-ring: var(--sidebar-ring);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar: var(--sidebar);
+    --color-chart-5: var(--chart-5);
+    --color-chart-4: var(--chart-4);
+    --color-chart-3: var(--chart-3);
+    --color-chart-2: var(--chart-2);
+    --color-chart-1: var(--chart-1);
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+    --radius-sm: 0;
+    --radius-md: 0;
+    --radius-lg: 0;
+    --radius-xl: 0;
+    --radius-2xl: 0;
+    --radius-3xl: 0;
+    --radius-4xl: 0;
+
+    --animate-float: float 6s ease-in-out infinite;
+    --animate-scan: scan 4s linear infinite;
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes scan {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100%); }
+    }
+}
+
+:root {
+    --background: #F9F8F6;
+    --foreground: #0C0C0B;
+    --card: #ffffff;
+    --card-foreground: #0C0C0B;
+    --popover: #ffffff;
+    --popover-foreground: #0C0C0B;
+    --primary: #0C0C0B;
+    --primary-foreground: #F9F8F6;
+    --secondary: #F0EEE9;
+    --secondary-foreground: #0C0C0B;
+    --muted: #F0EEE9;
+    --muted-foreground: #6B6964;
+    --accent: #F0EEE9;
+    --accent-foreground: #0C0C0B;
+    --destructive: oklch(0.577 0.245 27.325);
+    --border: rgba(0, 0, 0, 0.08);
+    --input: rgba(0, 0, 0, 0.08);
+    --ring: #01a982;
+    --chart-1: #0C0C0B;
+    --chart-2: #01a982;
+    --chart-3: #c74634;
+    --chart-4: #8c8c8c;
+    --chart-5: #bfbab0;
+    --radius: 0rem;
+    --sidebar: #F9F8F6;
+    --sidebar-foreground: #0C0C0B;
+}
+
+.dark {
+    --background: #0C0C0B;
+    --foreground: #F9F8F6;
+    --card: #141413;
+    --card-foreground: #F9F8F6;
+    --popover: #141413;
+    --popover-foreground: #F9F8F6;
+    --primary: #F9F8F6;
+    --primary-foreground: #0C0C0B;
+    --secondary: #1C1C1A;
+    --secondary-foreground: #F9F8F6;
+    --muted: #1C1C1A;
+    --muted-foreground: #85837E;
+    --accent: #1C1C1A;
+    --accent-foreground: #F9F8F6;
+    --destructive: oklch(0.704 0.191 22.216);
+    --border: rgba(255, 255, 255, 0.05);
+    --input: rgba(255, 255, 255, 0.05);
+    --ring: #01a982;
+    --chart-1: #F9F8F6;
+    --chart-2: #01a982;
+    --chart-3: #c74634;
+    --chart-4: #85837E;
+    --chart-5: #545350;
+    --sidebar: #0C0C0B;
+}
+
+@layer utilities {
+  .grain-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  .technical-grid {
+    background-image: 
+      radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 40px 40px, 200px 200px, 200px 200px;
+  }
+
+  .mask-radial-faded {
+    mask-image: radial-gradient(circle at center, black, transparent 80%);
+  }
+
+  .text-glow-hpe {
+    text-shadow: 0 0 15px rgba(1, 169, 130, 0.4);
+  }
+
+  .mono-label {
+    @apply font-mono text-[9px] uppercase tracking-[0.3em] font-medium opacity-50;
+  }
+}
